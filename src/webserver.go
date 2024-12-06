@@ -137,7 +137,7 @@ func Stream(w http.ResponseWriter, r *http.Request) {
 			if len(hostSplit) > 0 {
 				u.Host = hostSplit[0]
 			}
-			streamInfo.URL = fmt.Sprintf("https://%s:%d%s?%s", u.Host, Settings.HttpsPort, u.Path, u.RawQuery)
+			streamInfo.URL = fmt.Sprintf("https://%s%s?%s", u.Host, u.Path, u.RawQuery)
 		}
 	}
 
