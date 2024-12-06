@@ -1358,7 +1358,7 @@ func removePortFromURL(inputUrl string) (string) {
 	hostWithoutPort := parsedURL.Hostname() // Extract hostname without port
 	parsedURL.Host = hostWithoutPort       // Reassign host without port
 
-	return parsedURL.String(),
+	return parsedURL.String()
 }
 
 func getTuner(id, playlistType string) (tuner int) {
