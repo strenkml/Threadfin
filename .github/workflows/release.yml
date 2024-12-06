@@ -50,10 +50,3 @@ jobs:
           no-cache: true
           platforms: linux/amd64
           tags: strenkml/threadfin:latest,strenkml/threadfin:${{  github.ref_name }}
-
-      - name: Release
-        uses: "ModeSevenIndustrialSolutions/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          files: dist/*
