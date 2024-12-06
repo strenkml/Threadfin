@@ -1035,7 +1035,8 @@ func thirdPartyBuffer(streamID int, playlistID string, useBackup bool, backupNum
 
 			if Settings.FFmpegForceHttp {
 				url = strings.Replace(url, "https://", "http://", -1)
-				url = strings.Replace(url, ":" + strconv.Itoa(Settings.HttpsPort), "", -1)
+				url = removePortFromURL(url)
+				showInfo("Removing the port from the url!")
 				showInfo("Forcing URL to HTTP for FFMPEG: " + url)
 			}
 
@@ -1346,6 +1347,18 @@ func thirdPartyBuffer(streamID int, playlistID string, useBackup bool, backupNum
 
 	}
 
+}
+
+func removePortFromURL(inputUrl string) (string) {
+	parsedURL, err := url.Parse(inputUrl)
+	if err != nil {
+		return ""
+	}
+
+	hostWithoutPort := parsedURL.Hostname() // Extract hostname without port
+	parsedURL.Host = hostWithoutPort       // Reassign host without port
+
+	return parsedURL.String(),
 }
 
 func getTuner(id, playlistType string) (tuner int) {
